@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
+using CsvHelper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MyFinalProject.Data;
 using MyFinalProject.Models;
+using Newtonsoft.Json;
 
 namespace MyFinalProject.Controllers
 {
@@ -18,8 +23,9 @@ namespace MyFinalProject.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string message)
         {
+            ViewBag.message = message;
             return View();
         }
 

@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Add Fund";
+}
+
+@if (ViewBag.messageSuccess != null)
+{
+    <div class="alert alert-success" role="alert" style="text-align: center;">
+        @ViewBag.messageSuccess
+    </div>
+}
+
+@if (ViewBag.messageFail != null)
+{
+    <div class="alert alert-danger" role="alert" style="text-align: center;">
+        @ViewBag.messageFail
+    </div>
+}
+
+<h1 class="display-4">Add Fund</h1>
+
+<small>Your current fund is $@ViewBag.fund.ToString("#.##").</small>
+
+<div class="box-shadow form-base container" style="height: auto;">
+    <form method="post">
+        <div class="form-group">
+            <label for="amount">Amount</label>
+            <input class="form-control" type="number" name="amount" />
+        </div>
+        <div style="text-align: center;">
+            <input class="form-control btn-outline-primary" type="submit" value="Continue" />
+        </div>
+    </form>
+</div>
+
+<div style="padding-top: 30px;">
+    <small>A fee of $5 will be charged for every $5000 fund you add.</small>
+</div>

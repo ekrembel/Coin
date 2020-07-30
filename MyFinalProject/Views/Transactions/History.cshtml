@@ -1,0 +1,73 @@
+﻿@using MyFinalProject.Models;
+
+@model List<Sold>
+
+@{ 
+    ViewBag.Title = "Sold";
+}
+
+<h1 class="display-4">Sold Shares</h1>
+
+<table class="box-shadow">
+    <tr>
+        <th>Symbol</th>
+        <th>Company</th>
+        <th>Date-Time</th>
+        <th>Share</th>
+        <th>Cost</th>
+        <th>Earn</th>
+        <th>Profit</th>
+    </tr>
+    @foreach (var share in Model)
+    {
+        <tr>
+            <td>@share.Symbol</td>
+            <td>@share.companyName</td>
+            <td>@share.DateAndTime.ToString()</td>
+            <td>@share.NumOfShare</td>
+            <td>$@(share.Cost.ToString("#.##"))</td>
+            <td>$@(share.latestPrice.ToString("#.##"))</td>
+            @if (share.Profit > 0)
+            {
+                <td class="text-success">$@share.Profit.ToString("#.##")</td>
+            }
+            else if (share.Profit == 0)
+            {
+                <td>$0.00</td>
+            }
+            else if (share.Profit < 0)
+            {
+                <td class="text-danger">-$@share.Profit.ToString("#.##")</td>
+            }
+        </tr>
+    }
+    <tr>
+        <td>---</td>
+        <td>---</td>
+        <td>---</td>
+        <td>---</td>
+        <td>---</td>
+        <td>---</td>
+        <td>---</td>
+    </tr>
+    <tr>
+        <th>Total Profit</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        @if (ViewBag.total > 0)
+        {
+            <td class="text-success">$@(ViewBag.total.ToString("#.##"))</td>
+        }
+        else if (ViewBag.total < 0)
+        {
+            <td class="text-danger">-$@(Math.Abs(ViewBag.total).ToString("#.##"))</td>
+        }
+        else if (ViewBag.total == 0)
+        {
+            <td class="text-dark">$0.00</td>
+        }
+    </tr>
+</table>

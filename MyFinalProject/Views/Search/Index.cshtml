@@ -1,0 +1,34 @@
+﻿@using MyFinalProject.ViewModels;
+
+@model List<SharesViewModel>
+@{
+    ViewBag.Title = "Search";
+}
+
+<div>
+    <h3 class="display-4">Search Results</h3>
+</div>
+
+@if (Model != null)
+{
+    <table class="box-shadow search">
+        <tr>
+            <th>Symbol</th>
+            <th>Company</th>
+            <th>Share Price</th>
+        </tr>
+        @foreach (var company in Model)
+        {
+            <tr>
+                <td>@company.Symbol</td>
+                <td>@company.companyName</td>
+                <td>
+                    <form method="post" asp-action="Quoted" asp-controller="Quote">
+                        <input name="symbol" hidden value="@company.Symbol" />
+                        <input class="btn btn-outline-danger" type="submit" value="Quote" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+}

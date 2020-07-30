@@ -1,0 +1,57 @@
+﻿@using MyFinalProject.Models;
+@model List<Bought>
+
+
+@{
+    ViewBag.Title = "My Shares";
+}
+
+@if (ViewBag.message != null)
+{
+    <div class="alert alert-success" role="alert" style="text-align: center;">
+        @ViewBag.message
+    </div>
+}
+
+<h1 class="display-4">My Shares</h1>
+
+<table class="box-shadow">
+    <tr>
+        <th>Symbol</th>
+        <th>Company</th>
+        <th>Share</th>
+        <th>Cost Per Share</th>
+        <th>Total Cost</th>
+    </tr>
+    @foreach (var share in Model)
+    {
+        <tr>
+            <td>@share.Symbol</td>
+            <td>@share.companyName</td>
+            <td>@share.NumOfShare</td>
+            <td>@(share.latestPrice.ToString("#.##"))</td>
+            <td class="text-danger">$@((share.latestPrice*share.NumOfShare).ToString("#.##"))</td>
+        </tr>
+    }
+    <tr>
+        <td>---</td>
+        <td>---</td>
+        <td>---</td>
+        <td>---</td>
+        <td>---</td>
+    </tr>
+    <tr>
+        <th>Cash Available</th>
+        <td></td>
+        <th></th>
+        <td></td>
+        <td>$@(ViewBag.cash.ToString("#.##"))</td>
+    </tr>
+    <tr>
+        <th>Total Fund</th>
+        <td></td>
+        <th></th>
+        <td></td>
+        <td>$@ViewBag.fund.ToString("#.##")</td>
+    </tr>
+</table>

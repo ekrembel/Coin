@@ -1,0 +1,34 @@
+﻿@using MyFinalProject.ViewModels
+@model DeleteAccountViewModel
+@{
+    ViewBag.Title = "Delete Account";
+}
+
+<h1 class="display-4">Delete Account</h1>
+
+<div class="box-shadow form-base container" style="height: auto;">
+    <form method="post" >
+        <div class="form-group">
+            <label asp-for="Password">Enter your password</label>
+            <input class="form-control" type="password" asp-for="Password"/>
+            <span asp-validation-for="Password"></span>
+        </div>
+        <div class="form-group">
+            <label>Please select a reason</label>
+            <select class="form-control" asp-for="Reason">
+                <option><small>I dont have time for this.</small></option>
+                <option><small>I dont like Coin.</small></option>
+                <option><small>I lost interest in Stock Market.</small></option>
+                <option><small>I just wanted to see what it looks like</small></option>
+            </select>
+        </div>
+        <div style="text-align: center;">
+            <input class="btn btn-outline-danger" type="submit" value="Delete" />
+        </div>
+    </form>
+</div>
+
+@if (ViewBag.error != null)
+{
+    <small class="text-danger">@ViewBag.error</small>
+}

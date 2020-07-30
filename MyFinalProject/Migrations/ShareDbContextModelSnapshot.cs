@@ -218,22 +218,7 @@ namespace MyFinalProject.Migrations
                     b.ToTable("ApplicationUser");
                 });
 
-            modelBuilder.Entity("MyFinalProject.Models.Feedback", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Reason")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Feedback");
-                });
-
-            modelBuilder.Entity("MyFinalProject.Models.Share", b =>
+            modelBuilder.Entity("MyFinalProject.Models.Bought", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -268,7 +253,78 @@ namespace MyFinalProject.Migrations
 
                     b.HasIndex("AspNetUserId");
 
-                    b.ToTable("Share");
+                    b.ToTable("Bought");
+                });
+
+            modelBuilder.Entity("MyFinalProject.Models.Company", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Symbol")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Companies");
+                });
+
+            modelBuilder.Entity("MyFinalProject.Models.Feedback", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Reason")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Feedback");
+                });
+
+            modelBuilder.Entity("MyFinalProject.Models.Sold", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AspNetUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<double>("Cost")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("DateAndTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("NumOfShare")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Profit")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Symbol")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("companyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("latestPrice")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AspNetUserId");
+
+                    b.ToTable("Sold");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -322,7 +378,14 @@ namespace MyFinalProject.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MyFinalProject.Models.Share", b =>
+            modelBuilder.Entity("MyFinalProject.Models.Bought", b =>
+                {
+                    b.HasOne("MyFinalProject.Models.ApplicationUser", "AspNetUser")
+                        .WithMany()
+                        .HasForeignKey("AspNetUserId");
+                });
+
+            modelBuilder.Entity("MyFinalProject.Models.Sold", b =>
                 {
                     b.HasOne("MyFinalProject.Models.ApplicationUser", "AspNetUser")
                         .WithMany()

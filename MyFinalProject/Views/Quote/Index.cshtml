@@ -1,0 +1,27 @@
+﻿
+@model MyFinalProject.ViewModels.SharesViewModel
+
+@{
+    ViewBag.Title = "Quote";
+}
+
+<h1 class="display-4">Quote</h1>
+
+<div class="box-shadow form-base container" style="height: auto;">
+    <form method="post" asp-action="Quoted" asp-controller="Quote">
+        <div class="form-group">
+            <label asp-for="Symbol"></label>
+            <input class="form-control" asp-for="Symbol" />
+        </div>
+        <div style="text-align: center;">
+            <input class="btn btn-outline-primary" type="submit" value="Quote" />
+        </div>
+    </form>
+</div>
+<br />
+<br />
+<hr />
+
+<div>@ViewBag.latestTime</div>
+
+

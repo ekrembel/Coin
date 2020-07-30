@@ -1,0 +1,39 @@
+﻿@using MyFinalProject.ViewModels
+@model AddFundViewModel
+@{
+    ViewBag.Title = "Add Fund";
+}
+
+<h1 class="display-4">Add Fund</h1>
+
+<div class="box-shadow form-base container" style="height: auto;">
+    <div>
+        <p>Amount: $@ViewBag.amount.ToString("#.##")</p>
+    </div>
+    <form method="post" asp-action="AddFund">
+        <input hidden value="@ViewBag.amount" asp-for="Amount" />
+        <div class="form-group">
+            <label>Name On The Card</label>
+            <input class="form-control" asp-for="Name" />
+        </div>
+        <div class="form-group">
+            <label>Card Number</label>
+            <input class="form-control" asp-for="CardNumber" />
+        </div>
+        <div class="form-group">
+            <label>Expiration Year</label>
+            <input class="form-control" asp-for="ExpirationYear" />
+        </div>
+        <div class="form-group">
+            <label>CCV</label>
+            <input class="form-control" asp-for="CCV" />
+        </div>
+        <div style="text-align: center;">
+            <input class="btn btn-outline-primary" type="submit" value="Add" />
+        </div>
+    </form>
+</div>
+
+<div style="padding-top: 20px;">
+    <small>$@(ViewBag.fee.ToString("#.##")) will be charged from your card.</small>
+</div>

@@ -1,0 +1,42 @@
+﻿@using MyFinalProject.ViewModels;
+@model List<SharesViewModel>
+@{
+    ViewBag.Title = "Share Details";
+}
+
+<h1 class="display-4">Shares of @Model[0].companyName</h1>
+
+<table class="box-shadow">
+    <tr>
+        <th>Symbol</th>
+        <th>Company</th>
+        <th>Share</th>
+        <th>Cost</th>
+        <th></th>
+        <th></th>
+    </tr>
+    @foreach (var share in Model)
+    {
+        <tr>
+            <td>@share.Symbol</td>
+            <td>@share.companyName</td>
+            <td>@share.NumOfShare</td>
+            <td>$@share.latestPrice.ToString("#.##")</td>
+            <td>
+                <form method="post" asp-action="Sell" asp-controller="Sell">
+                    <input name="symbol" hidden value="@share.Symbol" />
+                    <input class="btn btn-outline-danger" type="submit" value="Current Value" />
+                </form>
+            </td>
+            <td>
+                <form method="post" asp-action="Index" asp-controller="Sell">
+                    <input name="symbol" value="@share.Symbol" hidden />
+                    <input name="numOfShare" value="@share.NumOfShare" hidden />
+                    <input type="submit" class="btn btn-outline-danger" value="Sell" />
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+
+

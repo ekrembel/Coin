@@ -1,3 +1,42 @@
-﻿@page
+﻿@using MyFinalProject.ViewModels;
+
+@model SharesViewModel
 @{
+    ViewBag.Title = "Quoted";
 }
+
+
+
+@if (Model != null)
+{
+
+    <table class="box-shadow">
+        <tr>
+            <th>Symbol</th>
+            <th>Company</th>
+            <th>Price Per Share</th>
+            <th></th>
+
+        </tr>
+        <tr>
+            <td>@Model.Symbol</td>
+            <td>@Model.companyName</td>
+            <td>$@Model.latestPrice.ToString("#.##")</td>
+            <td>
+                <form method="post" asp-action="Index" asp-controller="Buy">
+                    <input hidden type="number" asp-for="NumOfShare" value="1" />
+                    <input hidden type="text" asp-for="Symbol" value="@Model.Symbol" />
+                    <button class="btn btn-outline-danger" type="submit">Buy</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <small>A share of @Model.companyName (@Model.Symbol) costs $@Model.latestPrice.ToString("#.##").</small>
+}
+else
+{
+    <div>
+        <small class="text-danger">@ViewBag.errorMessage</small>
+    </div>
+}
+

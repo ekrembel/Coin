@@ -1,0 +1,38 @@
+﻿@model MyFinalProject.ViewModels.UsersViewModel
+
+@{
+    ViewBag.Title = "Create Account";
+}
+
+<h1 class="display-4">Create Account</h1>
+
+
+<div class="box-shadow form-base container" style="height: auto;">
+    <form method="post">
+        <div asp-validation-summary="All" class="text-danger" style="font-size: small;"></div>
+        <div class="form-group">
+            <label asp-for="Username"></label>
+            <input class="form-control" asp-for="Username" />
+            
+        </div>
+        <div class="form-group">
+            <label asp-for="Email">Email Address</label>
+            <input class="form-control" asp-for="Email" />
+            
+        </div>
+        <div class="form-group">
+            <label asp-for="Password"></label>
+            <input class="form-control" asp-for="Password" />
+            
+        </div>
+        <div class="form-group">
+            <label asp-for="ConfirmPassword"></label>
+            <input class="form-control" asp-for="ConfirmPassword" />
+            
+        </div>
+        <div style="text-align: center;">
+            <input class="btn btn-outline-primary" type="submit" value="Submit" />
+        </div>
+
+    </form>
+</div>

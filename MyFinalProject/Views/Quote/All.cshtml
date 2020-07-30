@@ -1,0 +1,47 @@
+﻿@using MyFinalProject.ViewModels
+
+@model List<SharesViewModel>
+@{
+    ViewBag.Title = "All Companies";
+}
+
+    <div>
+        <form class="form-inline my-2 my-lg-0" style="margin: auto;" method="post" asp-action="Index" asp-controller="Search">
+
+            <div style="padding-right: 5px;">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search a company" name="name" aria-label="Search">
+            </div>
+            <div>
+                <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+
+<div>
+    <h4 class="display-4">All Companies</h4>
+</div>
+
+
+@if (Model != null)
+{
+    <table class="box-shadow" style="width: 75%; margin: auto;">
+        <tr>
+            <th>Symbol</th>
+            <th>Company</th>
+            <th>Share Price</th>
+        </tr>
+        @foreach (var company in Model)
+        {
+            <tr>
+                <td>@company.Symbol</td>
+                <td>@company.companyName</td>
+                <td>
+                    <form method="post" asp-action="Quoted" asp-controller="Quote">
+                        <input name="symbol" hidden value="@company.Symbol" />
+                        <input class="btn btn-outline-danger" type="submit" value="Quote" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+}

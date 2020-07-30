@@ -1,0 +1,47 @@
+﻿@model MyFinalProject.ViewModels.BuyViewModel
+
+@{
+    ViewBag.Title = "Buy";
+}
+
+@if (ViewBag.message != null)
+{
+    <div class="alert alert-success" role="alert" style="text-align: center;">
+        @ViewBag.message
+    </div>
+}
+
+@if (ViewBag.cashErrorMessage != null)
+{
+    <div class="alert alert-danger" role="alert" style="text-align: center;">
+        @ViewBag.cashErrorMessage
+    </div>
+}
+
+<h1 class="display-4">Buy</h1>
+
+<div class="box-shadow form-base container" style="height: auto;">
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="Symbol">Symbol</label>
+            <input class="form-control" type="text" asp-for="Symbol" />
+            <span style="font-size: small; color: red;" asp-validation-for="Symbol"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="NumOfShare">Shares</label>
+            <input class="form-control" type="number" asp-for="NumOfShare" />
+            <span style="font-size: small; color: red;" asp-validation-for="NumOfShare"></span>
+        </div>
+        <div style="text-align: center;">
+            <input class="btn btn-outline-primary" type="submit" value="Buy" />
+        </div>
+    </form>
+</div>
+
+@if (ViewBag.exceptionMessage != null)
+{
+    <div class="alert alert-warning" role="alert">
+        @ViewBag.errorMessage
+    </div>
+    <p class="text-danger">@ViewBag.exceptionMessage</p>
+}

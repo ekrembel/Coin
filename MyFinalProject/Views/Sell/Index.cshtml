@@ -1,0 +1,45 @@
+﻿@model MyFinalProject.ViewModels.SharesViewModel
+
+@{
+    ViewBag.Title = "Sell";
+}
+
+@if (ViewBag.message != null)
+{
+    <div class="alert alert-success" role="alert" style="text-align: center;">
+        @ViewBag.message
+    </div>
+}
+
+<h1 class="display-4">Sell</h1>
+
+
+@if (Model.Symbols.Count > 0)
+{
+    <div class="box-shadow form-base container" style="height: auto;">
+        <form method="post" asp-action="ShareDetails" asp-controller="Sell">
+            <div class="form-group">
+                <label asp-for="Symbol"></label>
+                <select class="form-control" asp-for="Symbol" asp-items="@Model.Symbols"></select>
+            </div>
+            <div style="text-align: center;">
+                <input class="btn btn-outline-primary" type="submit" value="Continue" />
+            </div>
+        </form>
+    </div>
+}
+else
+{
+    <div class="text-danger">
+        You've got nothing to sell.
+    </div>
+}
+
+
+@if (ViewBag.exceptionMessage != null)
+{
+    <div class="alert alert-warning" role="alert">
+        @ViewBag.errorMessage
+    </div>
+    <p class="text-danger">@ViewBag.exceptionMessage</p>
+}
