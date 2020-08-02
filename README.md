@@ -23,7 +23,7 @@ Users can
 
 ## Technologies
 
-This application was created on Virtual Studio 2019
+This application was created on Visual Studio 2019
 
 - C#
 - ASP.NET Core 
@@ -32,4 +32,11 @@ This application was created on Virtual Studio 2019
 - CSS
 - SQL
 - Bootstrap
+
+## Possible Improvements
+
+- The email addresses of the users are confirmed by default. A confirmation email can be sent to users to confirm their emails addresses.
+- When users attempt to reset their passwords, it sends the email address and the token to the reset password page. A reset password email can be sent to users to authenticate them. 
+- The check out functionality only adds the amount to the users' fund, and even if the users enter their correct payment information, no fee can be charged from their card right now. This could be completed to carry out the full transaction.
+- If a user buys shares from the same company again and again, instead of updating the number of the shares on the database, it creates a new entry for each transaction. Becuase of that, shares of the same company may not be sold together at once. For example, if user buys 2 shares and 3 shares of the same company at different times, the user cannot sell the 5 shares at once. They must sell them seperately. This could be improved to allow users to sell as many shares as they want to sell from the same company at once.
 
